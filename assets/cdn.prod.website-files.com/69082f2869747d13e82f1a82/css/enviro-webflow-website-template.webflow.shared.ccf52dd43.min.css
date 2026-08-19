@@ -97,7 +97,9 @@ html{-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;font-family:sans-se
   height: 100% !important;
   max-height: 360px !important;
   object-fit: cover !important;
-  object-position: center 20% !important;
+  object-position: center 15% !important;
+  transform: scale(1.18) !important;
+  transform-origin: center 20% !important;
   border-radius: 30px !important;
   display: block !important;
 }
