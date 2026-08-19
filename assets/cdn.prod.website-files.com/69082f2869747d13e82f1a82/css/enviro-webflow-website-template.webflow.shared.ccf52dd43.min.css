@@ -15,3 +15,45 @@ html{-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;font-family:sans-se
 .promo-image-block {
   transition: transform 0.2s ease-out !important;
 }
+
+
+/* NyayaSetu Equal Height Blog Cards Fix */
+.blog-collection-list {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
+  grid-gap: 32px !important;
+  align-items: stretch !important;
+}
+.blog-collection-list > .w-dyn-item {
+  display: flex !important;
+  height: 100% !important;
+}
+.blog-single-block {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  width: 100% !important;
+  border-radius: 20px !important;
+  padding: 16px !important;
+}
+.blog-image-wrap {
+  width: 100% !important;
+  height: 240px !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  display: block !important;
+}
+.blog-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: 16px !important;
+  display: block !important;
+}
+.blog-post-content-block {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  margin-top: 20px !important;
+}
