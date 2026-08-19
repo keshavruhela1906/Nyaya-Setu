@@ -45,7 +45,7 @@ NyayaSetu is optimized for static hosting on **GitHub Pages**.
 ## 👥 Project Team — Team Sankalp
 
 - **Product & Guidance Lead**: Information Architecture & Government Route Curation
-- **Frontend Lead**: **Ranjan Singh** (Frontend & UI Architecture)
+- **Frontend Lead**: [**Ranjan Singh** (`@ranjxn`)](https://github.com/ranjxn) — Frontend & UI Architecture, Responsive Landmarks & Component Design
 - **Logic & Wizard Developer**: Rules Engine & LocalStorage Tracker
 - **QA & Documentation Lead**: Test Matrices & Compliance Verification
 
