@@ -86,3 +86,18 @@ html{-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;font-family:sans-se
 }
 
 .w-webflow-badge,a.w-webflow-badge,[class*="w-webflow-badge"],[href*="webflow.com"]{display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important;width:0!important;height:0!important;position:absolute!important;top:-9999px!important;left:-9999px!important;z-index:-9999!important}
+
+/* NyayaSetu Team Member Image Crop & Fill Fix */
+.team-image-block {
+  overflow: hidden !important;
+  border-radius: 30px !important;
+}
+.team-member-image {
+  width: 100% !important;
+  height: 100% !important;
+  max-height: 360px !important;
+  object-fit: cover !important;
+  object-position: center 20% !important;
+  border-radius: 30px !important;
+  display: block !important;
+}
