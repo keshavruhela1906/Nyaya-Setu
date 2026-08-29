@@ -27,6 +27,7 @@ function getDb() {
 
 function createTables(db) {
   db.exec(`
+    -- ── Citizen Decision Tree ──────────────────────────────────────────────
     CREATE TABLE IF NOT EXISTS problems (
       id TEXT PRIMARY KEY,
       slug TEXT NOT NULL,
@@ -59,6 +60,7 @@ function createTables(db) {
       FOREIGN KEY (route_id) REFERENCES routes(id)
     );
 
+    -- ── Grievance Tracker ─────────────────────────────────────────────────
     CREATE TABLE IF NOT EXISTS tracker_items (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       title TEXT NOT NULL,
@@ -69,6 +71,77 @@ function createTables(db) {
       notes TEXT,
       portal_url TEXT,
       created_at TEXT NOT NULL DEFAULT (datetime('now'))
+    );
+
+    -- ── Contact Inquiries ─────────────────────────────────────────────────
+    CREATE TABLE IF NOT EXISTS contacts (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      email TEXT NOT NULL,
+      field TEXT NOT NULL DEFAULT 'General Guidance Inquiry',
+      message TEXT NOT NULL,
+      agreed_terms INTEGER NOT NULL DEFAULT 1,
+      status TEXT NOT NULL DEFAULT 'New',
+      ip_address TEXT NOT NULL DEFAULT '',
+      created_at TEXT NOT NULL DEFAULT (datetime('now'))
+    );
+
+    -- ── Newsletter Subscriptions ──────────────────────────────────────────
+    CREATE TABLE IF NOT EXISTS newsletters (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      email TEXT NOT NULL UNIQUE,
+      source_page TEXT NOT NULL DEFAULT 'Home',
+      active INTEGER NOT NULL DEFAULT 1,
+      created_at TEXT NOT NULL DEFAULT (datetime('now'))
+    );
+
+    -- ── User Feedback / Ratings ───────────────────────────────────────────
+    CREATE TABLE IF NOT EXISTS feedback (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      rating INTEGER NOT NULL CHECK(rating BETWEEN 1 AND 5),
+      category TEXT NOT NULL DEFAULT 'General Guidance',
+      feedback_text TEXT NOT NULL DEFAULT '',
+      citizen_role TEXT NOT NULL DEFAULT 'Citizen User',
+      helpful INTEGER NOT NULL DEFAULT 1,
+      created_at TEXT NOT NULL DEFAULT (datetime('now'))
+    );
+
+    -- ── Citizen Grievance Submissions ─────────────────────────────────────
+    CREATE TABLE IF NOT EXISTS submissions (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      tracking_code TEXT NOT NULL UNIQUE,
+      category TEXT NOT NULL DEFAULT 'Consumer Grievance & Refunds',
+      citizen_name TEXT NOT NULL DEFAULT 'Anonymous Citizen',
+      citizen_email TEXT NOT NULL DEFAULT '',
+      citizen_phone TEXT NOT NULL DEFAULT '',
+      city TEXT NOT NULL DEFAULT '',
+      state TEXT NOT NULL DEFAULT '',
+      pincode TEXT NOT NULL DEFAULT '',
+      incident_title TEXT NOT NULL,
+      incident_description TEXT NOT NULL,
+      incident_date TEXT NOT NULL DEFAULT (date('now')),
+      opposing_party TEXT NOT NULL DEFAULT '',
+      reference_number TEXT NOT NULL DEFAULT '',
+      claimed_amount REAL NOT NULL DEFAULT 0,
+      official_portal_name TEXT NOT NULL DEFAULT 'CPGRAMS / National Consumer Helpline',
+      official_portal_url TEXT NOT NULL DEFAULT 'https://pgportal.gov.in/',
+      official_portal_helpline TEXT NOT NULL DEFAULT '1915 / 1800-11-4000',
+      checklist_json TEXT NOT NULL DEFAULT '[]',
+      generated_draft TEXT NOT NULL DEFAULT '',
+      status TEXT NOT NULL DEFAULT 'Guidance Generated',
+      notes_json TEXT NOT NULL DEFAULT '[]',
+      created_at TEXT NOT NULL DEFAULT (datetime('now'))
+    );
+
+    -- ── Wizard Session State ──────────────────────────────────────────────
+    CREATE TABLE IF NOT EXISTS wizard_sessions (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      session_id TEXT NOT NULL UNIQUE,
+      route_id TEXT,
+      answers_json TEXT NOT NULL DEFAULT '{}',
+      current_step INTEGER NOT NULL DEFAULT 0,
+      created_at TEXT NOT NULL DEFAULT (datetime('now')),
+      updated_at TEXT NOT NULL DEFAULT (datetime('now'))
     );
   `);
 }
