@@ -1,7 +1,7 @@
 (function (window) {
   "use strict";
 
-  var API_BASE = "http://localhost:5000/api/v1";
+  var API_BASE = "/api/v1";
 
   function request(path, options) {
     var config = options || {};

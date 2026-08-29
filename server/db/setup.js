@@ -70,6 +70,15 @@ function createTables(db) {
       portal_url TEXT,
       created_at TEXT NOT NULL DEFAULT (datetime('now'))
     );
+
+    CREATE TABLE IF NOT EXISTS submissions (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT,
+      email TEXT NOT NULL,
+      message TEXT,
+      form_type TEXT NOT NULL,
+      created_at TEXT NOT NULL DEFAULT (datetime('now'))
+    );
   `);
 }
 
