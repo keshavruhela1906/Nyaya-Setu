@@ -30,9 +30,7 @@ app.get("/api/v1/health", (_req, res) => {
 app.use("/api/v1", apiRouter);
 app.use(express.static(ROOT));
 
-app.use("/api", (_req, res) => {
-  res.status(404).json({ ok: false, error: "API route not found" });
-});
+app.use("/api", apiRouter);
 
 app.listen(PORT, () => {
   console.log(`NyayaSetu running at http://localhost:${PORT}`);
